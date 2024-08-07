@@ -1,6 +1,6 @@
 News API
 
-This project was created as part of the Northcoders software development bootcamp, it consists of a back-end API for a news system similar to Reddit, where users can post articles on different topics. The users can also post comments on the articles. Articles and topics can receive positive and negative votes from users, depending on whether they liked the content or not.
+This project consists of a back-end API for a news system similar to Reddit, where users can post articles on different topics. The users can also post comments on the articles. Articles and topics can receive positive and negative votes from users, depending on whether they liked the content or not.
 The project was created with JavaScript (Node.js) and an Express.js server.
 The project was done entirely with test-driven development, using Jest and Supertest.
 The database was implemented with PostgreSQL, and the entire project was modeled following the MVC design pattern.
