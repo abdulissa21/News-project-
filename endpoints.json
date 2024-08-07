@@ -1,0 +1,206 @@
+{
+	"GET /api": {
+		"description": "serves up a json representation of all the available endpoints of the api"
+	},
+	"GET /api/topics": {
+		"description": "serves an array of all topics",
+		"queries": [],
+		"exampleResponse": {
+			"topics": [{ "slug": "football", "description": "Footie!" }]
+		}
+	},
+	"POST /api/topics": {
+		"description": "Post a new topic in the database.",
+		"queries": [],
+		"body": {
+			"slug": "new topic",
+			"description": "New topic description."
+		},
+		"exampleResponse": {
+			"topic": [
+				{
+					"slug": "new topic",
+					"description": "New topic description."
+				}
+			]
+		}
+	},
+	"GET /api/articles": {
+		"description": "serves an array of all articles",
+		"queries": ["author", "topic", "sort_by", "order", "limit", "p"],
+		"exampleResponse": {
+			"articles": [
+				{
+					"articles": {
+						"article_id": 34,
+						"title": "The Notorious MSG’s Unlikely Formula For Success",
+						"topic": "cooking",
+						"author": "grumpy19",
+						"body": "The 'umami' craze has turned a much-maligned and misunderstood food additive into an object of obsession for the world’s most innovative chefs. But secret ingredient monosodium glutamate’s biggest secret may be that there was never anything wrong with it at all.",
+						"created_at": "2020-11-22T11:13:00.000Z",
+						"votes": 0,
+						"article_img_url": "https://images.pexels.com/photos/2403392/pexels-photo-2403392.jpeg?w=700&h=700",
+						"comment_count": 11
+					},
+					"total_count": 1
+				}
+			]
+		}
+	},
+	"DELETE /api/articles/:article_id": {
+		"description": "Delete the given article and it's respective comments from the database. Returns status 204.",
+		"queries": [],
+		"exampleResponse": { "status": 204 }
+	},
+	"POST /api/articles": {
+		"description": "Post a new article to the database, returns the posted article object.",
+		"queries": [],
+		"body": {
+			"author": "rogersop",
+			"title": "The new rogersop Article!",
+			"body": "That should be a very interesting article, but I can't think of what to write in here.",
+			"topic": "paper",
+			"article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
+		},
+		"exampleResponse": {
+			"article": [
+				{
+					"article_id": 14,
+					"title": "The new rogersop Article!",
+					"topic": "paper",
+					"author": "rogersop",
+					"body": "That should be a very interesting article, but I can't think of what to write in here.",
+					"article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+					"created_at": "2024-04-19T12:09:00.000Z",
+					"votes": 0,
+					"comment_count": 0
+				}
+			]
+		}
+	},
+	"GET /api/articles/:article_id": {
+		"description": "serves an array with the article object corresponding to the given article_id",
+		"queries": [],
+		"exampleResponse": {
+			"article": [
+				{
+					"article_id": "1",
+					"title": "Living in the shadow of a great man",
+					"topic": "mitch",
+					"author": "butter_bridge",
+					"body": "I find this existence challenging",
+					"created_at": "2020-07-09T20:11:00.000Z",
+					"votes": 100,
+					"article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+					"comment_count": 11
+				}
+			]
+		}
+	},
+	"GET /api/articles/:article_id/comments": {
+		"description": "serves an array with all the comments of an article",
+		"queries": ["limit", "p"],
+		"exampleResponse": {
+			"comments": [
+				{
+					"comment_id": "6",
+					"votes": "1",
+					"created_at": "2020-10-11T16:23:00.000Z",
+					"author": "butter_bridge",
+					"body": "This is a bad article name",
+					"article_id": "6"
+				}
+			]
+		}
+	},
+	"POST /api/articles/:article_id/comments": {
+		"description": "adds a comment to the given article, returns the added comment.",
+		"queries": [],
+		"body": {
+			"username": "icellusedkars",
+			"body": "This is the icellusedkars new comment!"
+		},
+		"exampleResponse": {
+			"comment": [
+				{
+					"comment_id": "19",
+					"votes": "0",
+					"created_at": "2024-04-16T14:59:56.973Z",
+					"author": "icellusedkars",
+					"body": "This is the icellusedkars new comment!",
+					"article_id": "2"
+				}
+			]
+		}
+	},
+	"PATCH /api/articles/:article_id": {
+		"description": "Update the given article number of votes passed on the body.",
+		"queries": [],
+		"body": { "inc_votes": 1 },
+		"exampleResponse": {
+			"article": [
+				{
+					"article_id": "1",
+					"title": "Living in the shadow of a great man",
+					"topic": "mitch",
+					"author": "butter_bridge",
+					"body": "I find this existence challenging",
+					"created_at": "2020-07-09T21:11:00.000Z",
+					"votes": "101",
+					"article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
+				}
+			]
+		}
+	},
+	"DELETE /api/comments/:comment_id": {
+		"description": "Delete the given comment from the database. Returns status 204 if deleted.",
+		"queries": [],
+		"exampleResponse": {}
+	},
+	"GET /api/users": {
+		"description": "Get all users from the database. Returns an array of user objects",
+		"queries": [],
+		"exampleResponse": [
+			{
+				"username": "butter_bridge",
+				"name": "jonny",
+				"avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+			},
+			{
+				"username": "icellusedkars",
+				"name": "sam",
+				"avatar_url": "https://avatars2.githubusercontent.com/u/24604688?s=460&v=4"
+			}
+		]
+	},
+	"GET /api/users/:username": {
+		"description": "Get the user by username. Returns an array with a user object.",
+		"queries": [],
+		"exampleResponse": [
+			{
+				"username": "butter_bridge",
+				"name": "jonny",
+				"avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
+			}
+		]
+	},
+	"PATCH /api/comments/:comment_id": {
+		"description": "Update the number of votes for a given comment. Returns the updated comment.",
+		"queries": [],
+		"body": {
+			"inc_votes": "1"
+		},
+		"exampleResponse": {
+			"comment": [
+				{
+					"comment_id": "19",
+					"votes": "1",
+					"created_at": "2024-04-16T14:59:56.973Z",
+					"author": "icellusedkars",
+					"body": "This is the icellusedkars new comment!",
+					"article_id": "2"
+				}
+			]
+		}
+	}
+}
