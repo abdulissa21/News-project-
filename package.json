@@ -1,0 +1,45 @@
+{
+	"name": "be-nc-news",
+	"version": "1.0.0",
+	"description": "bc-nc-news",
+	"main": "server.js",
+	"scripts": {
+		"setup-dbs": "psql -f ./db/setup.sql",
+		"seed": "node ./db/seeds/run-seed.js",
+		"test": "jest",
+		"prepare": "husky install",
+		"start": "node server.js",
+		"seed-prod": "NODE_ENV=production npm run seed"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/northcoders/be-nc-news.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/northcoders/be-nc-news/issues"
+	},
+	"homepage": "https://github.com/northcoders/be-nc-news#readme",
+	"devDependencies": {
+		"husky": "^8.0.2",
+		"jest": "^27.5.1",
+		"jest-extended": "^2.0.0",
+		"pg-format": "^1.0.4"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.0",
+		"express": "^4.19.2",
+		"jest-sorted": "^1.0.15",
+		"pg": "^8.7.3",
+		"supertest": "^6.3.4"
+	},
+	"jest": {
+		"setupFilesAfterEnv": [
+			"jest-extended/all",
+			"jest-sorted"
+		]
+	}
+}
